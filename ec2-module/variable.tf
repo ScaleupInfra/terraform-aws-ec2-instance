@@ -1,14 +1,21 @@
-locals {
-  valid_instance_name_regex = "^[a-zA-Z0-9]+-[a-zA-Z0-9]+-[a-zA-Z0-9]+-[a-zA-Z0-9]+-[a-zA-Z0-9]+$"
+variable "vpc_cidr_block" {
+  description = "CIDR block for the VPC"
 }
 
-variable "instance_names" {
-  type = list(string)
+variable "subnet_cidr_block" {
+  description = "CIDR block for the subnet"
+}
 
-  validation {
-    condition     = length(var.instance_names) == 1
-    error_message = "Invalid instance name(s). Instance names must follow the format 'companyname-Teamname-env-module-purpose', e.g., 'autoscaleupinfra-Engineering-dev-ec2-module'."
-  }
+variable "security_group_name" {
+  description = "Name of the security group"
+}
+
+variable "security_group_description" {
+  description = "Description of the security group"
+}
+
+variable "instance_name" {
+  description = "Name of the instance"
 }
 
 variable "ami_id" {
@@ -19,9 +26,6 @@ variable "instance_type" {
   description = "Type of EC2 instance"
 }
 
-
 variable "key_name" {
   description = "Name of the key pair for SSH access"
 }
-
-

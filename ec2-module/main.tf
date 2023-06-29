@@ -7,13 +7,13 @@ resource "aws_instance" "web" {
   subnet_id              = aws_subnet.web.id
 
   tags = merge(local.tags, {
-    "Name" = "autoscaleupinfra-engineering-dev-s3-module"
+    "Name" = var.instance_name
   })
 }
 
 resource "aws_security_group" "web" {
-  name        = "my-security-group"
-  description = "My security group"
+  name        = var.security_group_name
+  description = var.security_group_description
 
   vpc_id = aws_vpc.main.id
 
@@ -22,13 +22,13 @@ resource "aws_security_group" "web" {
 }
 
 resource "aws_subnet" "web" {
-  cidr_block        = "10.0.0.0/24"
+  cidr_block        = var.subnet_cidr_block
   vpc_id            = aws_vpc.main.id
-  availability_zone = "ap-northeast-1a"
+  availability_zone = "ap-northeast-1a"  # Update with your desired availability zone
 }
 
 resource "aws_vpc" "main" {
-  cidr_block = "10.0.0.0/16"
+  cidr_block = var.vpc_cidr_block
 }
 
 locals {
