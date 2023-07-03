@@ -11,15 +11,12 @@ resource "aws_instance" "web" {
   })
 }
 
-
 resource "aws_security_group" "web" {
   name        = var.security_group_name
   description = var.security_group_description
 
   vpc_id = aws_vpc.main.id
 
-  # Define your security group rules here
-  # ...
 }
 
 resource "aws_subnet" "web" {
