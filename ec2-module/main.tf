@@ -6,10 +6,11 @@ resource "aws_instance" "web" {
   vpc_security_group_ids = [aws_security_group.web.id]
   subnet_id              = aws_subnet.web.id
 
-  tags = merge(local.tags), {
+  tags = merge(local.tags, {
     "Name" = var.instance_name
-  }
+  })
 }
+
 
 resource "aws_security_group" "web" {
   name        = var.security_group_name
