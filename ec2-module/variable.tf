@@ -12,6 +12,7 @@ variable "security_group_name" {
 
 variable "security_group_description" {
   description = "Description of the security group"
+  default = "My security group"
 }
 
 variable "instance_name" {
@@ -28,4 +29,5 @@ variable "instance_type" {
 
 variable "key_name" {
   description = "Name of the key pair for SSH access"
+  default = "tushar-key"
 }
